@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#8FA7A5A8"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--
+        FraneLayout에 올려지는 모든 뷰는, 좌측 상단을 기준으로 배치가 됨
+        따라서 컴포넌트간 공존이 불가, 즉 중첩이 되어버림.
+    -->
+
+    <LinearLayout
+        android:layout_margin="50dp"
+        android:background="#F4D8F9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="100dp"
+        android:background="#FFEB3B"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="150dp"
+        android:background="#CF1111"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>

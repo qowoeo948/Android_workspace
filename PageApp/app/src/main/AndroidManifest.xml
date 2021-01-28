@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".intent.ReceiveActivity"></activity>
+        <activity android:name=".intent.ResultActivity"></activity>
         <activity android:name=".fragment.PagerActivity"></activity>
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.RedActivity" />

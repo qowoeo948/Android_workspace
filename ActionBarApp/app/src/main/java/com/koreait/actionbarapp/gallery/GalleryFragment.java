@@ -96,7 +96,7 @@ public class GalleryFragment extends androidx.fragment.app.Fragment {
             public void run() {
                 BufferedReader buffr=null;
                 try {
-                    URL url=new URL("http://172.30.1.28:7777/gallery");
+                    URL url=new URL("http://192.168.1.2:7777/gallery");
                     HttpURLConnection con=(HttpURLConnection) url.openConnection();
                     buffr = new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));
                     StringBuilder sb = new StringBuilder(); //data값이 누적될 객체선언
@@ -146,7 +146,7 @@ public class GalleryFragment extends androidx.fragment.app.Fragment {
         Thread thread = new Thread(){
             public void run() {
                 try {
-                    URL url = new URL("http://172.30.1.28:7777/images/"+image);
+                    URL url = new URL("http://192.168.1.2:7777/images/"+image);
                     InputStream is = url.openStream(); //지정한 URL자원에 대한 스트림을 취득!!
                     Bitmap bitmap = BitmapFactory.decodeStream(is);//비트맵 객체 취득!!
                     //취득한 이미지 정보를 어댑터가 사용중인 데이터에 대입!! (계획...)
@@ -178,7 +178,7 @@ public class GalleryFragment extends androidx.fragment.app.Fragment {
 
         //백그라운드로 작업 시작!!! 이때 doInBackground메서드가 호출됨..쓰레드로..
         //따라서 네트워크 요청 등에 사용하면 됨..
-        myAsync.execute("http://172.30.1.28:7777/gallery");
+        myAsync.execute("http://192.168.1.2:7777/gallery");
 
     }
 }

@@ -95,7 +95,7 @@ public class MyAsync extends AsyncTask<String, Void, String> {
                 gallery.setFilename(json.getString("filename"));
                 //웹서버에서 이미지 가져와서 비트맵으로 반환..
                 ImageDownLoaderAsync downAsync = new ImageDownLoaderAsync(gallery, galleryFragment);
-                downAsync.execute("http://172.30.1.28:7777/images/"+gallery.getFilename());
+                downAsync.execute("http://192.168.1.2:7777/images/"+gallery.getFilename());
             }
         } catch (JSONException e) {
             e.printStackTrace();

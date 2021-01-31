@@ -10,18 +10,18 @@ import com.koreait.actionbarapp.gallery.GalleryFragment;
 import com.koreait.actionbarapp.mp3.MusicFragment;
 
 public class MyViewPagerAdapter extends FragmentStatePagerAdapter {
-    Fragment[] fragments = new Fragment[3];
+    Fragment[] fragments=new Fragment[3];
 
     public MyViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
-        fragments[0] = new MusicFragment(); //페이지 생성
+        fragments[0] = new MusicFragment();
         fragments[1] = new ChatFragment();
         fragments[2] = new GalleryFragment();
     }
 
-    //몇 페이지?
+    //몇페이지?
     public int getCount() {
-        return fragments.length;    //페이지 수 반환
+        return fragments.length; //페이지 수 반환
     }
 
     //각 포지션에 어떤 페이지를?

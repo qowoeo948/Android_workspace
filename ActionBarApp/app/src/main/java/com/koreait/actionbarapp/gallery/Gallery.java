@@ -5,8 +5,8 @@ import android.graphics.Bitmap;
 public class Gallery {
     private int gallery_id;
     private String title;
-    private String filename;    //파일명
-    private Bitmap bitmap;  //이미지 정보 객체 (ImageView에 사용할 예정)
+    private String filename; //파일명...
+    private Bitmap bitmap;//이미지 정보 객체(ImageView에 사용할 예정)
 
     public int getGallery_id() {
         return gallery_id;

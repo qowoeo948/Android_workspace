@@ -50,7 +50,6 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
     //back버튼에 이벤트 연결
-
     @Override
     public boolean onSupportNavigateUp() {
         //현재 액티비티는 스택에서 제거

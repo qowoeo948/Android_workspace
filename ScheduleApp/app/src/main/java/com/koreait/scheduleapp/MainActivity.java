@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                break;
 
        }
-       startActivity(intent);   //지정한 액티비티 호출출
+       startActivity(intent);   //지정한 액티비티 호출
          return true;
     }
 }

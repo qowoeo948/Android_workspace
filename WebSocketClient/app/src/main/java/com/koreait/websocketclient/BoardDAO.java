@@ -66,7 +66,7 @@ public class BoardDAO {
 
                 for(int i=0;i<jsonArray.length();i++ ){
                     JSONObject json=(JSONObject) jsonArray.get(i);
-                    Board board = gson.fromJson(json.toString(), Board.class);
+                    Board board = gson.fromJson(json.toString(), Board.class);  //json -> board객체로
                     Log.d(TAG, "writer is "+board.getWriter());
                     boardList.add(board);
                 }
@@ -96,10 +96,51 @@ public class BoardDAO {
         }
     }
 
-    //상세보기
+    //상세보기  (메모리상의 boardList를 사용했기 때문에 필요가 없었다..)
 
 
     //등록
+    public void insert(Board board){
+        String uri="/board";
+        BufferedWriter buffw = null; //서버에 보낼것이므로 writer가 필요
+        try {
+            URL url = new URL("http://"+ip+":"+port+uri);
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("POST");
+            con.setDoOutput(true);  //서버에 보낼떈 꼭 해야함
+            con.setRequestProperty("Content-Type","application/json;charset=utf-8");
+
+            //보낼 데이터 구성
+            buffw = new BufferedWriter(new OutputStreamWriter(con.getOutputStream(),"UTF-8"));
+
+           //이 자바 --> json으로 ..Gson
+            String jsonString = gson.toJson(board);
+
+
+            buffw.write(jsonString);
+            buffw.flush();
+
+            int code = con.getResponseCode();
+            if(code!=200){
+                throw new BoardUpdateException("등록 실패");
+            }
+
+            mainActivity.registDialog.dismiss();
+
+        }catch (MalformedURLException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(buffw!=null){
+                try {
+                    buffw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
 
     //수정
@@ -130,6 +171,9 @@ public class BoardDAO {
             socketMessage.data = jsonString;
             mainActivity.myWebSocketClient.sendMsg(socketMessage);
 
+            //다이얼로그 창 닫기!
+            mainActivity.detailDialog.dismiss();
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -147,7 +191,22 @@ public class BoardDAO {
 
 
     //삭제
-    public void del(){
+    public void del(int board_id) throws BoardUpdateException{
+        String uri="/board/"+board_id;  //RESTful 준수하자!
+        try {
+            URL url = new URL("http://"+ip+":"+port+uri);
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("DELETE");
+            int code = con.getResponseCode();  //요청 및 응답이 발생
 
+            if(code!=200){
+                throw new BoardUpdateException("삭제 실패");
+            }
+            mainActivity.detailDialog.dismiss();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

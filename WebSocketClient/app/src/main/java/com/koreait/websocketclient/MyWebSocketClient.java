@@ -6,19 +6,21 @@ import com.google.gson.Gson;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
+
 import java.net.URI;
+
 import org.java_websocket.drafts.Draft;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MyWebSocketClient extends WebSocketClient {
-    String TAG=this.getClass().getName();
+    String TAG = this.getClass().getName();
     MainActivity mainActivity;
     Gson gson = new Gson();
 
     public MyWebSocketClient(URI serverUri, MainActivity mainActivity) {
         super(serverUri);
-        this.mainActivity=mainActivity;
+        this.mainActivity = mainActivity;
     }
 
     //서버와 연결되면...
@@ -33,15 +35,15 @@ public class MyWebSocketClient extends WebSocketClient {
         try {
             JSONObject json = new JSONObject(message); //string --> json object
 
-            if(json.get("requestCode").equals("create")){ //서버에서 등록작업이 누군가에 의해 발생함...
+            if (json.get("requestCode").equals("create")) { //서버에서 등록작업이 누군가에 의해 발생함...
                 //목록을 갱신
                 mainActivity.boardDAO.selectAll();
                 Log.d(TAG, "글쓰기 발생");
-            }else if(json.get("requestCode").equals("update")){
+            } else if (json.get("requestCode").equals("update")) {
                 //목록을 갱신
                 mainActivity.boardDAO.selectAll();
                 Log.d(TAG, "수정 발생");
-            }else if(json.get("requestCode").equals("delete")){
+            } else if (json.get("requestCode").equals("delete")) {
                 //목록을 갱신
                 mainActivity.boardDAO.selectAll();
                 Log.d(TAG, "삭제 발생");
@@ -52,7 +54,7 @@ public class MyWebSocketClient extends WebSocketClient {
     }
 
     //메시지 보내기
-    public void sendMsg(SocketMessage socketMessage){
+    public void sendMsg(SocketMessage socketMessage) {
         String jsonString = gson.toJson(socketMessage);
         this.send(jsonString);
     }

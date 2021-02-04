@@ -4,6 +4,7 @@ package com.koreait.websocketclient;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,6 +75,17 @@ public class DetailDialog extends Dialog {
 
     }
     public void del(){
-
+        Thread thread = new Thread(){
+            @Override
+            public void run() {
+                try {
+                    mainActivity.boardDAO.del(board_id);    //한건 삭제 요청 board_id가 필요
+                }catch (BoardUpdateException e){
+                    //유저들에게 에러를 보여주자
+                    e.printStackTrace();
+                }
+            }
+        };
+            thread.start();
     }
 }

@@ -17,5 +17,6 @@ public class RedFragment extends Fragment {
         View view = (View) inflater.inflate(R.layout.fragment_red, container, false);
 
         return view;
+
     }
 }

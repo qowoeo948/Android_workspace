@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 public class MyViewPagerAdapter extends FragmentStatePagerAdapter {
     Fragment[] fragments=new Fragment[3];
 
+
     public MyViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
         fragments[0] = new YellowFragment();

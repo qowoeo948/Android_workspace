@@ -25,12 +25,14 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(myViewPagerAdapter);
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater=this.getMenuInflater();
         menuInflater.inflate(R.menu.navi, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

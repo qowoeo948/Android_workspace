@@ -13,7 +13,7 @@
         <!--API  Key 등록-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAq0xYsKq4H096tuiSibnJd8ncK4TswSTo" />
+            android:value="keyvalue" />
 
 
         <activity android:name=".MainActivity">
